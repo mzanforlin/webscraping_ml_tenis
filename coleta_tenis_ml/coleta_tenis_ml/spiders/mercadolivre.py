@@ -7,4 +7,11 @@ class MercadolivreSpider(scrapy.Spider):
     start_urls = ["https://lista.mercadolivre.com.br/tenis-corrida-masculino"]
 
     def parse(self, response):
-        pass
+        products = response.css('div.poly-card__content')
+        
+        for product in products:
+
+            yield  {'brand' : products.css('span.poly-component__brand::text').get()
+            }    
+
+    pass
